@@ -1,40 +1,30 @@
 import ReactDOM from "react-dom/client";
 
-const currentDate = new Date();
-const hours = currentDate.getHours();
-const minutes = currentDate.getMinutes();
+const person = {
+  name: "Adam",
+  tel: 123456111,
+  city: "Kraków",
+};
 
-/* const numberContent = 13 + 7; */
+const newPerson = {
+  name: "Bartek",
+  tel: 123456222,
+  city: "Warszawa",
+};
 
-/* const element = (
+const telElement = <a href={person.tel}>{person.tel}</a>;
+const newTelElement = <a href={newPerson.tel}>{newPerson.tel}</a>;
+
+const element = (
   <div>
-    {hours} : {minutes}
+    <h1>Lista kontaktów</h1>
+    <h2>{person.name}</h2>
+    <h3>Tel: {telElement}</h3>
+    <h3>Miasto: {person.city}</h3>
+    <h2>{newPerson.name}</h2>
+    <h3>Tel: {newTelElement}</h3>
+    <h3>Miasto: {newPerson.city}</h3>
   </div>
-); */
-
-const text = "Napis!";
-
-/* const element = <div>{text}</div>;
-// const element = <div>{"text"}</div>; */
-
-function getRandomNumber() {
-  return Math.round(Math.random() * 100);
-}
-
-/* function getRandomNumber() {
-  console.log(Math.round(Math.random() * 10));
-}; */
-
-const element = <div>{getRandomNumber()}</div>;
-
-// funkcje ktore wywolujemy musza cos zwracac - slowo return, w przeciwnym razie zwracaja undefined i wtedy nic nie wyswietla sie na ekranie - tak jak np przy console.log
-
-// Jesli do klamer przekazemy undefined, null lub boolean (true lub false) to na ekranie nie wyswietli sie nic...
-
-// Musimy przekazac wywolanie funkcji, anie tylko definicje czyli np getRandomNumber() a nie getRandomNumber...
-
-console.log(hours, minutes);
-
-/* document.querySelector("#root div").innerHTML = `${hours} : ${minutes}`; */
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(element);
