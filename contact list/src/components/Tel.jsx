@@ -1,0 +1,4 @@
+/* export const Tel = (props) => <a href={"tel:" + props.tel}>{props.tel}</a>; 
+ lub string interpolation:*/
+
+export const Tel = (props) => <a href={`tel:${props.tel}`}>{props.tel}</a>;

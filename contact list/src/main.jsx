@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom/client";
+import { PersonInfo } from "./components/PersonInfo";
 
 const person = {
   name: "Filip",
@@ -36,21 +37,15 @@ const newPerson = {
 );
  */
 
-const Tel = (props) => <a href={props.tel}>{props.tel}</a>;
-
 const element = (
   <div>
     <h1>Lista kontaktów</h1>
-    <h2>{person.name}</h2>
-    <h3>
-      Tel: <Tel tel={person.tel} />
-    </h3>
-    <h3>Miasto: {person.city}</h3>
-    <h2>{newPerson.name}</h2>
-    <h3>
-      Tel: <Tel tel={newPerson.tel} />
-    </h3>
-    <h3>Miasto: {newPerson.city}</h3>
+    <PersonInfo name={person.name} tel={person.tel} city={person.city} />
+    <PersonInfo
+      name={newPerson.name}
+      tel={newPerson.tel}
+      city={newPerson.city}
+    />
   </div>
 );
 
