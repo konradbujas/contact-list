@@ -1,15 +1,40 @@
+import { useState } from "react";
 import { Tel } from "./Tel";
 
-export const PersonInfo = (props) => (
-  <>
-    <h2>{props.name}</h2>
-    <h3>
-      {" "}
-      Telefon: <Tel tel={props.tel} />
-    </h3>
-    {props.city && <h3>Miasto: {props.city}</h3>}{" "}
-  </>
-);
+export const PersonInfo = (props) => {
+  let stateArray = useState(false);
+  let isExpanded = stateArray[0];
+  let setIsExpanded = stateArray[1];
+
+  const buttonEl = (
+    <button
+      onClick={() => {
+        setIsExpanded(!isExpanded);
+      }}
+      // do setIsExpanded przekazujemy zaprzeczenie isExpanded i wtedy jesli szczegoly są schowane to pokazuje, a jak są pokazane to wtedy kliknięcie na przycisk je chowa
+    >
+      {isExpanded ? "Schowaj" : "Pokaż"}
+    </button>
+  );
+
+  // w powyższym używamy ternary operator żeby podmnienic tekst przycisku w zależności od stanu - czy są pokazane szczegóły, czy schowane
+
+  return (
+    <>
+      <h2>{props.name}</h2>
+      {buttonEl}
+      {isExpanded && (
+        <>
+          <h3>
+            Telefon: <Tel tel={props.tel} />
+          </h3>
+          {props.city && <h3>Miasto: {props.city}</h3>}
+        </>
+      )}
+      <hr />
+    </>
+  );
+};
 
 /* Conditional Rendering:
 Mozemy ustawic wyswietlanie pola, jesli nie jest puste. W przeciwnym razie nie renderujemy tego w widoku...
