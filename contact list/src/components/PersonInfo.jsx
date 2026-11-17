@@ -7,6 +7,22 @@ export const PersonInfo = (props) => (
       {" "}
       Telefon: <Tel tel={props.tel} />
     </h3>
-    <h3>Miasto: {props.city}</h3>
+    {props.city && <h3>Miasto: {props.city}</h3>}{" "}
   </>
 );
+
+/* Conditional Rendering:
+Mozemy ustawic wyswietlanie pola, jesli nie jest puste. W przeciwnym razie nie renderujemy tego w widoku...
+
+1. Ternary Operator 
+{props.city !== undefined ? <h3>Miasto: {props.city}</h3> : null}
+
+2. Operator Logiczny
+
+  A && B  
+  oznacza ze jesli A jest 'true' zwracamy B
+  oznacza ze jesli A jest 'false' zwracamy A
+
+  {props.city && <h3>Miasto: {props.city}</h3>}
+
+ */
