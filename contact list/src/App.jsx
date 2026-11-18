@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Form } from "./components/Form";
 import { PersonInfo } from "./components/PersonInfo";
 
 const people = [
@@ -19,9 +21,18 @@ Zamiast nowej stalej PersonInfoELements mozemy od razu przekazac mapowanie bezpo
 // key={person.tel} lub id: crypto.randomUUID();
 
 function App() {
+  const [isFormShown, setIsFormShown] = useState(false);
+  const handleShownFormClick = () => setIsFormShown(true);
+
   return (
     <>
       <h1>Lista kontaktów</h1>
+      {isFormShown ? (
+        <Form />
+      ) : (
+        <button onClick={handleShownFormClick}>Dodaj</button>
+      )}
+
       {people.map((person) => (
         <PersonInfo
           key={person.tel}
