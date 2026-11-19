@@ -9,7 +9,6 @@ export const Form = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        console.log("Formularz wysłany");
         console.log({ name });
       }}
     >
@@ -46,7 +45,7 @@ export const Form = () => {
           placeholder="Miasto"
         />
       </div>
-      <button disabled={name.length < 3 || tel.length < 9}>Zapisz</button>
+      <button disabled={name.length === 0 || tel.length === 0}>Zapisz</button>
     </form>
   );
 };
