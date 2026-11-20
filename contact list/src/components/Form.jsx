@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const Form = () => {
+export const Form = ({ onAddPerson }) => {
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const [city, setCity] = useState("");
@@ -9,6 +9,7 @@ export const Form = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        onAddPerson({ name, tel, city });
         console.log({ name, tel, city });
       }}
     >

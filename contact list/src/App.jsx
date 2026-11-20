@@ -25,7 +25,7 @@ function App() {
   const handleShownFormClick = () => setIsFormShown(true);
 
   const addPerson = () => {
-    console.log = "Add person";
+    console.log("Add person");
   };
 
   return (
