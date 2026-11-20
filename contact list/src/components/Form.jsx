@@ -9,7 +9,7 @@ export const Form = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        console.log({ name });
+        console.log({ name, tel, city });
       }}
     >
       <div>

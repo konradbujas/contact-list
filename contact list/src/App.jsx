@@ -24,11 +24,15 @@ function App() {
   const [isFormShown, setIsFormShown] = useState(false);
   const handleShownFormClick = () => setIsFormShown(true);
 
+  const addPerson = () => {
+    console.log = "Add person";
+  };
+
   return (
     <>
       <h1>Lista kontaktów</h1>
       {isFormShown ? (
-        <Form />
+        <Form onAddPerson={addPerson} />
       ) : (
         <button onClick={handleShownFormClick}>Dodaj</button>
       )}
