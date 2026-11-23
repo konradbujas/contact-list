@@ -30,6 +30,7 @@ function App() {
     setPeople(newPeople);
     console.log(data);
     console.log(people);
+    setIsFormShown(false);
   };
 
   /* people.push(data) nie powoduje zaktualizowanie listy kontaktow, bo uzywamy metody push a to w duzym skrócie nie tworzy nowej tablicy, tylko dodaje do istniejacej nowy element - w zwiazku z tym nie zachodzi potrzeba rerendera aplikacji bo tablica tak jakby jest taka sama (porównanie po referencji)
