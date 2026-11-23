@@ -10,7 +10,6 @@ export const Form = ({ onAddPerson }) => {
       onSubmit={(e) => {
         e.preventDefault();
         onAddPerson({ name, tel, city });
-        console.log({ name, tel, city });
       }}
     >
       <div>

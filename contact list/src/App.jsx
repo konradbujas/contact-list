@@ -24,8 +24,9 @@ function App() {
   const [isFormShown, setIsFormShown] = useState(false);
   const handleShownFormClick = () => setIsFormShown(true);
 
-  const addPerson = () => {
-    console.log("Add person");
+  const addPerson = (data) => {
+    console.log(data);
+    people.push(data);
   };
 
   return (
