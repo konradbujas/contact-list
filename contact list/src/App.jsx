@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form } from "./components/Form";
 import { PersonInfo } from "./components/PersonInfo";
 
-const people = [
+const initialPeople = [
   { name: "Filip", tel: 123456111, city: "Kraków" },
   { name: "Kacper", tel: 123456222, city: "Warszawa" },
   { name: "Karol", tel: 123456333, city: "" },
@@ -22,13 +22,18 @@ Zamiast nowej stalej PersonInfoELements mozemy od razu przekazac mapowanie bezpo
 
 function App() {
   const [isFormShown, setIsFormShown] = useState(false);
+  const [people, setPeople] = useState(initialPeople);
   const handleShownFormClick = () => setIsFormShown(true);
 
   const addPerson = (data) => {
+    const newPeople = [...people, data];
+    setPeople(newPeople);
     console.log(data);
-    people.push(data);
+    console.log(people);
   };
 
+  /* people.push(data) nie powoduje zaktualizowanie listy kontaktow, bo uzywamy metody push a to w duzym skrócie nie tworzy nowej tablicy, tylko dodaje do istniejacej nowy element - w zwiazku z tym nie zachodzi potrzeba rerendera aplikacji bo tablica tak jakby jest taka sama (porównanie po referencji)
+   */
   return (
     <>
       <h1>Lista kontaktów</h1>
