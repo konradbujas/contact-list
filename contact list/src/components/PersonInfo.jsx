@@ -22,7 +22,7 @@ export const PersonInfo = (props) => {
   // w powyższym używamy ternary operator żeby podmnienic tekst przycisku w zależności od stanu - czy są pokazane szczegóły, czy schowane
 
   return (
-    <li>
+    <li className={isExpanded ? "active" : ""}>
       <h2>{props.name}</h2>
       {buttonEl}
       {isExpanded && (

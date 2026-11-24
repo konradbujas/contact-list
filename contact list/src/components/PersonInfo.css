@@ -12,3 +12,7 @@ button {
   padding: 6px;
   margin-top: 12px;
 }
+
+li.active {
+  border-color: rgb(64, 64, 125);
+}
