@@ -2,6 +2,8 @@ import ReactDOM from "react-dom/client";
 import { PersonInfo } from "./components/PersonInfo";
 import App from "./App";
 
+import "./index.css";
+
 // const telElement = <a href={person.tel}>{person.tel}</a>;
 
 // const newTelElement = <a href={newPerson.tel}>{newPerson.tel}</a>;
