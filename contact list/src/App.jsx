@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Form } from "./components/Form";
 import { PersonInfo } from "./components/PersonInfo";
 
+import "./App.css";
+
 const initialPeople = [
   { name: "Filip", tel: 123456111, city: "Kraków" },
   { name: "Kacper", tel: 123456222, city: "Warszawa" },
@@ -43,15 +45,16 @@ function App() {
       ) : (
         <button onClick={handleShownFormClick}>Dodaj</button>
       )}
-
-      {people.map((person) => (
-        <PersonInfo
-          key={person.tel}
-          name={person.name}
-          tel={person.tel}
-          city={person.city}
-        />
-      ))}
+      <ul>
+        {people.map((person) => (
+          <PersonInfo
+            key={person.tel}
+            name={person.name}
+            tel={person.tel}
+            city={person.city}
+          />
+        ))}
+      </ul>
     </>
   );
 }

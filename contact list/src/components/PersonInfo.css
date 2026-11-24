@@ -1,0 +1,14 @@
+li {
+  border: solid 1px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  padding: 16px;
+}
+
+button {
+  background-color: rgb(51, 44, 44);
+  border-radius: 4px;
+  border: none;
+  padding: 6px;
+  margin-top: 12px;
+}

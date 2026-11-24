@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Tel } from "./Tel";
 
+import "./PersonInfo.css";
+
 export const PersonInfo = (props) => {
   let stateArray = useState(false);
   let isExpanded = stateArray[0];
@@ -20,7 +22,7 @@ export const PersonInfo = (props) => {
   // w powyższym używamy ternary operator żeby podmnienic tekst przycisku w zależności od stanu - czy są pokazane szczegóły, czy schowane
 
   return (
-    <>
+    <li>
       <h2>{props.name}</h2>
       {buttonEl}
       {isExpanded && (
@@ -31,8 +33,7 @@ export const PersonInfo = (props) => {
           {props.city && <h3>Miasto: {props.city}</h3>}
         </>
       )}
-      <hr />
-    </>
+    </li>
   );
 };
 
