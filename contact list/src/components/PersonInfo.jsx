@@ -19,12 +19,23 @@ export const PersonInfo = (props) => {
     </button>
   );
 
+  const buttonDelete = (
+    <button
+      onClick={() => {
+        props.onDelete();
+      }}
+    >
+      {"Usuń"}
+    </button>
+  );
+
   // w powyższym używamy ternary operator żeby podmnienic tekst przycisku w zależności od stanu - czy są pokazane szczegóły, czy schowane
 
   return (
     <li className={isExpanded ? "active" : ""}>
       <h2>{props.name}</h2>
       {buttonEl}
+      {buttonDelete}
       {isExpanded && (
         <>
           <h3>

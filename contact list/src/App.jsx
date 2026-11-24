@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form } from "./components/Form";
 import { PersonInfo } from "./components/PersonInfo";
 
@@ -24,7 +24,20 @@ Zamiast nowej stalej PersonInfoELements mozemy od razu przekazac mapowanie bezpo
 
 function App() {
   const [isFormShown, setIsFormShown] = useState(false);
-  const [people, setPeople] = useState(initialPeople);
+
+  // Odczyt z localStorage przy starcie, a jeśli brak, użyj initialPeople:
+
+  const [people, setPeople] = useState(() => {
+    const savedPeople = localStorage.getItem("people");
+    return savedPeople ? JSON.parse(savedPeople) : initialPeople;
+  });
+
+  // Zapis do localStorage za każdym razem, gdy zmiueni się tablica "people"
+
+  useEffect(() => {
+    localStorage.setItem("people", JSON.stringify(people));
+  }, [people]);
+
   const handleShownFormClick = () => setIsFormShown(true);
 
   const addPerson = (data) => {
@@ -37,6 +50,12 @@ function App() {
 
   /* people.push(data) nie powoduje zaktualizowanie listy kontaktow, bo uzywamy metody push a to w duzym skrócie nie tworzy nowej tablicy, tylko dodaje do istniejacej nowy element - w zwiazku z tym nie zachodzi potrzeba rerendera aplikacji bo tablica tak jakby jest taka sama (porównanie po referencji)
    */
+
+  const deletePerson = (telToDelete) => {
+    const updatedPeople = people.filter((person) => person.tel !== telToDelete);
+    setPeople(updatedPeople);
+  };
+
   return (
     <>
       <h1>Lista kontaktów</h1>
@@ -52,6 +71,7 @@ function App() {
             name={person.name}
             tel={person.tel}
             city={person.city}
+            onDelete={() => deletePerson(person.tel)} // Przekazanie funkcji do dziecka
           />
         ))}
       </ul>
