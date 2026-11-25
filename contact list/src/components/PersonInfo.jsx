@@ -8,6 +8,29 @@ export const PersonInfo = (props) => {
   let isExpanded = stateArray[0];
   let setIsExpanded = stateArray[1];
 
+  let editStateArray = useState(false);
+  let isEditing = editStateArray[0];
+  let setIsEditing = editStateArray[1];
+
+  // Stany formularza edycji zainicjowane obecnymi danymi kontaktu
+  const [name, setName] = useState(props.name);
+  const [tel, setTel] = useState(props.tel);
+  const [city, setCity] = useState(props.city);
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    props.onEdit(props.tel, { name, tel, city });
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    // Przywracamy w polach oryginalne dane z props na wypadek, gdyby użytkownik coś wpisał przed kliknięciem Anuluj
+    setName(props.name);
+    setTel(props.tel);
+    setCity(props.city);
+    setIsEditing(false);
+  };
+
   const buttonEl = (
     <button
       onClick={() => {
@@ -19,6 +42,8 @@ export const PersonInfo = (props) => {
     </button>
   );
 
+  // w powyższym używamy ternary operator żeby podmnienic tekst przycisku w zależności od stanu - czy są pokazane szczegóły, czy schowane
+
   const buttonDelete = (
     <button
       onClick={() => {
@@ -29,13 +54,53 @@ export const PersonInfo = (props) => {
     </button>
   );
 
-  // w powyższym używamy ternary operator żeby podmnienic tekst przycisku w zależności od stanu - czy są pokazane szczegóły, czy schowane
+  const buttonEdit = (
+    <button
+      onClick={() => {
+        setIsEditing(true);
+      }}
+    >
+      Edytuj
+    </button>
+  );
+
+  if (isEditing) {
+    return (
+      <li>
+        <form onSubmit={handleSave}>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            value={tel}
+            onChange={(e) => setTel(e.target.value)}
+            required
+          />
+          <input
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <button type="submit">Zapisz</button>
+          <button
+            type="button"
+            onClick={() => setIsEditing(false)}
+          >
+            Anuluj
+          </button>
+        </form>
+      </li>
+    );
+  }
 
   return (
     <li className={isExpanded ? "active" : ""}>
       <h2>{props.name}</h2>
-      {buttonEl}
+
       {buttonDelete}
+      {buttonEdit}
+      {buttonEl}
       {isExpanded && (
         <>
           <h3>

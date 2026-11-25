@@ -5,9 +5,9 @@ import { PersonInfo } from "./components/PersonInfo";
 import "./App.css";
 
 const initialPeople = [
-  { name: "Filip", tel: 123456111, city: "Kraków" },
-  { name: "Kacper", tel: 123456222, city: "Warszawa" },
-  { name: "Karol", tel: 123456333, city: "" },
+  { name: "Filip", tel: 123456111, city: "Kraków", id: "" },
+  { name: "Kacper", tel: 123456222, city: "Warszawa", id: "" },
+  { name: "Karol", tel: 123456333, city: "", id: "" },
 ];
 
 /* const PersonInfoElements = people.map((person) => (
@@ -56,14 +56,28 @@ function App() {
     setPeople(updatedPeople);
   };
 
+  const resetPeople = () => {
+    setPeople(initialPeople);
+    localStorage.setItem("people", JSON.stringify(initialPeople));
+  };
+
+  const editPerson = (originalTel, updatedData) => {
+    const newPeople = people.map((person) =>
+      person.tel === originalTel ? updatedData : person,
+    );
+    setPeople(newPeople);
+  };
+
   return (
     <>
       <h1>Lista kontaktów</h1>
+      {<button onClick={resetPeople}>Resetuj</button>}
       {isFormShown ? (
         <Form onAddPerson={addPerson} />
       ) : (
         <button onClick={handleShownFormClick}>Dodaj</button>
       )}
+
       <ul>
         {people.map((person) => (
           <PersonInfo
@@ -72,6 +86,7 @@ function App() {
             tel={person.tel}
             city={person.city}
             onDelete={() => deletePerson(person.tel)} // Przekazanie funkcji do dziecka
+            onEdit={editPerson}
           />
         ))}
       </ul>
