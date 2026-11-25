@@ -56,6 +56,8 @@ function App() {
     setPeople(updatedPeople);
   };
 
+  // reset - przywraca domyślna startową tablicę - inaczej w razie usunięcia rekordów, potrzeba usunąć klucz w localStorage, aby aplikacja załadowała dane od nowa
+
   const resetPeople = () => {
     setPeople(initialPeople);
     localStorage.setItem("people", JSON.stringify(initialPeople));
